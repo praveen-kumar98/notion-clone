@@ -3,7 +3,7 @@ import React, { useState, createRef, useEffect } from "react";
 const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
   const [dropdownVisibale, setDropdownVisible] = useState(false);
   const [renameDropdn, setRenameDropdn] = useState(false);
-  const [confirmModalvisible, setConfirmModalvisible] = useState(true);
+  const [confirmModalvisible, setConfirmModalvisible] = useState(false);
 
   const dpdnRef = createRef();
   const renameRef = createRef();
