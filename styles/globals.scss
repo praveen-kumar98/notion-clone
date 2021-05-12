@@ -157,6 +157,143 @@ a {
   overflow: hidden;
 }
 
+.auth-page {
+  .header {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    .nav {
+      margin: 0 auto;
+      max-width: 1300px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      height: 80px;
+      overflow: hidden;
+      position: relative;
+      .brand {
+        flex-shrink: 0;
+        a {
+          display: block;
+          text-decoration: none;
+          cursor: pointer;
+          color: inherit;
+          .logo {
+            display: flex;
+            align-items: center;
+            .notionLogo {
+              width: 30px;
+              height: 30px;
+              display: block;
+              flex-shrink: 0;
+              margin-right: 10px;
+            }
+            p {
+              font-weight: 500;
+              font-size: 16px;
+              color: $dark-gray;
+            }
+          }
+        }
+      }
+      .nav-right {
+        flex: 1;
+      }
+    }
+  }
+  .main {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    width: 100%;
+    .container {
+      margin: 0 auto;
+      max-width: 940px;
+      width: 100%;
+      height: 100%;
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        .title {
+          font-size: 50px;
+          margin-top: 12vh;
+          font-weight: 700;
+          margin-bottom: 24px;
+          text-align: center;
+          line-height: 1.1;
+        }
+        .form {
+          width: 100%;
+          max-width: 320px;
+          margin-bottom: 16vh;
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+          label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba($dark-gray, 0.6);
+          }
+          input:not([type="submit"]) {
+            @include notion_input;
+            padding: 8px;
+            width: 100%;
+            border-radius: 3px;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            margin-top: 3px;
+            &::placeholder {
+              color: $medium-gray;
+            }
+          }
+          input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 3px;
+            font-size: 0.95rem;
+            border: none;
+            color: rgb(235, 87, 87);
+            background: rgb(251, 235, 232);
+            box-shadow: rgba(15, 15, 15, 0.1) 0px 1px 2px,
+              rgba(235, 87, 87, 0.3) 0px 0px 0px 1px inset;
+            cursor: pointer;
+            margin-top: 5px;
+          }
+          .bottom-text {
+            text-align: center;
+            margin-top: 30px;
+
+            p,
+            a {
+              display: inline;
+              margin-right: 5px;
+              color: rgba($dark-gray, 0.6);
+              font-size: 0.875rem;
+              transition: $transition;
+            }
+            a {
+              &:hover {
+                color: rgb(235, 87, 87);
+                transition: $transition;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
 .sidebar {
   position: fixed;
   background: rgb(247, 246, 243);
