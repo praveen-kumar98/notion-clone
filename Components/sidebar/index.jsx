@@ -66,6 +66,7 @@ const Sidebar = ({ pages }) => {
       _pageList[index]["closed"] = true;
 
       setPageList(_pageList);
+
       if (page["children"]?.length > 0) {
         recursionClose(page["children"]);
       }
@@ -113,7 +114,6 @@ const Sidebar = ({ pages }) => {
 
     setPageList(_pageList);
   };
-
   useEffect(() => {
     getPages(pages);
   }, [pages]);

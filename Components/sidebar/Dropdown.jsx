@@ -1,5 +1,6 @@
 import React, { useState, createRef, useEffect } from "react";
 
+
 const Dropdown = ({
   setOptionOpacity,
   setDropDownOpen,
@@ -81,6 +82,7 @@ const Dropdown = ({
           className="fas fa-plus"
           onClick={() => addPage(pageId, depth + 1)}
         ></i>
+
       </div>
 
       {/* Dropdown content */}
