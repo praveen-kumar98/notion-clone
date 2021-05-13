@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import Dropdown from "./Dropdown";
 
-const PageNavigation = ({ name, pageId, closed, openFolder, depth }) => {
+
+const PageNavigation = ({
+  name,
+  pageId,
+  closed,
+  openFolder,
+  depth,
+  addPage,
+}) => {
   const [optionOpacity, setOptionOpacity] = useState(0);
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
   return (
     <div
+      key={pageId}
       className="active page"
       style={{ paddingLeft: `${20 * depth + 15}px` }}
       onMouseEnter={() => setOptionOpacity(100)}
@@ -28,6 +37,9 @@ const PageNavigation = ({ name, pageId, closed, openFolder, depth }) => {
         <Dropdown
           setDropDownOpen={setDropDownOpen}
           setOptionOpacity={setOptionOpacity}
+          addPage={addPage}
+          depth={depth}
+          pageId={pageId}
         />
       </div>
     </div>

@@ -38,7 +38,7 @@ const createPage = async (req, res) => {
       );
     }
     await page.save();
-    return res.status(200).json({ page });
+    return res.status(200).json(page);
   } catch (err) {
     return res.status(400).json({ error: err.message });
   }
