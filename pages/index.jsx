@@ -22,6 +22,7 @@ const Home = () => {
     dispatch({ type: "GET_PAGES", payload: data.pages });
     dispatch({ type: "NOTIFY", payload: { loading: false } });
   }
+
   return (
     <div className="home-page">
       <Head>
@@ -32,6 +33,7 @@ const Home = () => {
       <div className="sidebar">
         {/* Sidebar Component */}
         <Sidebar pages={pages} />
+
       </div>
       <div className="body">
         {/* Body Component */}

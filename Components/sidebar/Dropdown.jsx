@@ -72,6 +72,7 @@ const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
           }}
         ></i>
         <i className="fas fa-plus"></i>
+
       </div>
 
       {/* Dropdown content */}
@@ -88,6 +89,7 @@ const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
             Rename
           </a>
           <a
+
             onClick={() => {
               setConfirmModalvisible(true);
               setDropdownVisible(false);
@@ -96,6 +98,7 @@ const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
             <i className="far fa-trash-alt"></i>
             Delete
           </a>
+
         </div>
       ) : null}
 
