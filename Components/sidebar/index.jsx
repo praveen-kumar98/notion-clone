@@ -66,10 +66,52 @@ const Sidebar = ({ pages }) => {
       _pageList[index]["closed"] = true;
 
       setPageList(_pageList);
-      if (page["children"].length > 0) {
+      if (page["children"]?.length > 0) {
         recursionClose(page["children"]);
       }
     });
+  };
+
+  const addPage = async (parent, depth) => {
+    const res = await fetch("/api/pages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ parent }),
+    });
+    const data = await res.json();
+
+    let _pageList = [...pageList];
+
+    let index = pageList.length - 1;
+
+    if (parent) {
+      const parentIndex = _pageList.findIndex((x) => x._id === parent);
+      const parentPage = _pageList[parentIndex];
+
+      index = parentIndex;
+
+      if (parentPage.children.length !== 0) {
+        index = _pageList.findIndex(
+          (x) =>
+            x._id === parentPage.children[parentPage.children.length - 1]._id
+        );
+      }
+
+      _pageList[parentIndex]["closed"] = false;
+    }
+    // Create New Page
+    const newPage = { ...data, closed: true, depth: depth };
+
+    if (parent) {
+      const parentIndex = _pageList.findIndex((x) => x._id === parent);
+      _pageList[parentIndex].children.push(newPage);
+    }
+
+    _pageList.splice(index + 1, 0, newPage);
+
+    setPageList(_pageList);
   };
 
   useEffect(() => {
@@ -119,6 +161,7 @@ const Sidebar = ({ pages }) => {
                   closed={page.closed}
                   openFolder={openFolder}
                   depth={page.depth}
+                  addPage={addPage}
                 />
               </div>
             );
@@ -126,7 +169,7 @@ const Sidebar = ({ pages }) => {
         })}
       </div>
       {/* Add page */}
-      <div className="add-page">
+      <div className="add-page" onClick={() => addPage(null, 0)}>
         <i className="fas fa-plus"></i>
         <p>Add a Page</p>
       </div>

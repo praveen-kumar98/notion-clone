@@ -1,6 +1,12 @@
 import React, { useState, createRef, useEffect } from "react";
 
-const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
+const Dropdown = ({
+  setOptionOpacity,
+  setDropDownOpen,
+  addPage,
+  depth,
+  pageId,
+}) => {
   const [dropdownVisibale, setDropdownVisible] = useState(false);
   const [renameDropdn, setRenameDropdn] = useState(false);
   const [confirmModalvisible, setConfirmModalvisible] = useState(false);
@@ -71,7 +77,10 @@ const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
             setDropDownOpen(true);
           }}
         ></i>
-        <i className="fas fa-plus"></i>
+        <i
+          className="fas fa-plus"
+          onClick={() => addPage(pageId, depth + 1)}
+        ></i>
       </div>
 
       {/* Dropdown content */}
