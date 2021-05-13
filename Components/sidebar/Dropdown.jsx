@@ -71,7 +71,9 @@ const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
             setDropDownOpen(true);
           }}
         ></i>
+
         <i className="fas fa-plus"></i>
+
       </div>
 
       {/* Dropdown content */}
