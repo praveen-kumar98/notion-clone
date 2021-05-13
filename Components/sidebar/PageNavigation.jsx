@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import Dropdown from "./Dropdown";
 
-const PageNavigation = () => {
+const PageNavigation = ({ name, pageId, closed, openFolder, depth }) => {
   const [optionOpacity, setOptionOpacity] = useState(0);
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
   return (
     <div
-      className="page"
+      className="active page"
+      style={{ paddingLeft: `${20 * depth + 15}px` }}
       onMouseEnter={() => setOptionOpacity(100)}
       onMouseLeave={() => {
         dropDownOpen === false ? setOptionOpacity(0) : null;
       }}
     >
-      <i className="fas fa-caret-right"></i>
+      <i
+        className={closed === true ? "fas fa-caret-right" : "fas fa-caret-down"}
+        onClick={() => openFolder(pageId)}
+      ></i>
       <i className="fas fa-file-alt"></i>
       {/* Page Name */}
       <div className="page-name">
-        <p className="page-title">Page Name</p>
+        <p className="page-title">{name}</p>
       </div>
       <div className="page-options" style={{ opacity: optionOpacity }}>
         {/* Dropdown Component */}

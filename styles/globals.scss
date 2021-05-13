@@ -39,7 +39,6 @@ a {
   cursor: pointer;
 
   i {
-    color: $medium-gray;
     margin-right: 10px;
     font-size: $normal-font-size;
   }
@@ -66,7 +65,7 @@ a {
     rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
   padding: 6px 0px 6px 0px;
 
-  div,
+  a,
   .dropdown-option {
     color: $dark-gray;
     padding: 6px 6px;
@@ -156,7 +155,6 @@ a {
   max-width: 235px;
   overflow: hidden;
 }
-
 .auth-page {
   .header {
     position: fixed;
@@ -355,6 +353,7 @@ a {
   }
   .search {
     @include sidebar-item;
+    color: $medium-gray;
     margin-bottom: 15px;
   }
   .page {
@@ -367,11 +366,13 @@ a {
       font-size: 1.2rem;
       margin-left: 2px;
       margin-right: 0px;
+      color: $medium-gray;
     }
     .fa-file-alt {
       margin-left: 10px;
       margin-right: 7px;
       font-size: 1rem;
+      color: $medium-gray;
     }
     .page-name {
       flex: 1;
@@ -408,6 +409,7 @@ a {
   .add-page,
   .logout {
     @include sidebar-item;
+    color: $medium-gray;
   }
   .logout {
     position: absolute;
@@ -420,7 +422,7 @@ a {
 
 .edit-dropdown {
   .fa-edit {
-    margin-right: 7pxs;
+    margin-right: 7px;
   }
 }
 
@@ -537,6 +539,12 @@ a {
 .dropdown-content,
 .rename {
   @include dropdown;
+  i {
+    margin: 0px 10px 0px 8px;
+    margin-right: 10px;
+    color: #37352f;
+    font-size: 1rem;
+  }
 }
 
 .rename {
@@ -557,6 +565,47 @@ a {
       background: rgba(242, 241, 238, 0.6);
       caret-color: $dark-gray;
       color: $dark-gray;
+    }
+  }
+}
+
+.loader {
+  --path: #2f3545;
+  --dot: #5628ee;
+  --duration: 3s;
+  width: 44px;
+  height: 44px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    display: block;
+    background: var(--dot);
+    top: 37px;
+    left: 19px;
+    transform: translate(-18px, -18px);
+    animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+      infinite;
+  }
+  svg {
+    display: block;
+    width: 44px;
+    height: 44px;
+    rect {
+      fill: none;
+      stroke: var(--path);
+      stroke-width: 10px;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      stroke-dasharray: (256 / 4 * 3) (256 / 4) (256 / 4 * 3) (256 / 4);
+      stroke-dashoffset: 0;
+      animation: pathRect 3s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
     }
   }
 }
@@ -609,5 +658,34 @@ a {
 
   100% {
     margin-left: 235px;
+  }
+}
+@keyframes pathRect {
+  25% {
+    stroke-dashoffset: 64;
+  }
+  50% {
+    stroke-dashoffset: 128;
+  }
+  75% {
+    stroke-dashoffset: 192;
+  }
+  100% {
+    stroke-dashoffset: 256;
+  }
+}
+
+@keyframes dotRect {
+  25% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(18px, -18px);
+  }
+  75% {
+    transform: translate(0, -36px);
+  }
+  100% {
+    transform: translate(-18px, -18px);
   }
 }

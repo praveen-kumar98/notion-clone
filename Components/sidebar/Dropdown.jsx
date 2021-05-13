@@ -71,7 +71,6 @@ const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
             setDropDownOpen(true);
           }}
         ></i>
-
         <i className="fas fa-plus"></i>
 
       </div>
@@ -79,7 +78,7 @@ const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
       {/* Dropdown content */}
       {dropdownVisibale === true ? (
         <div className="dropdown-content" ref={dpdnRef}>
-          <div
+          <a
             className="edit-dropdown"
             onClick={() => {
               setDropdownVisible(false);
@@ -87,17 +86,19 @@ const Dropdown = ({ setOptionOpacity, setDropDownOpen }) => {
             }}
           >
             <i className="far fa-edit"></i>
-            <p>Rename</p>
-          </div>
-          <div
+            Rename
+          </a>
+          <a
+
             onClick={() => {
               setConfirmModalvisible(true);
               setDropdownVisible(false);
             }}
           >
             <i className="far fa-trash-alt"></i>
-            <p>Delete</p>
-          </div>
+            Delete
+          </a>
+
         </div>
       ) : null}
 
