@@ -3,20 +3,20 @@ import mongoose from "mongoose";
 const pageSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    default: "Untitled",
   },
   groups: {
     type: Number,
-    required: true,
+    default: 1,
   },
   parent: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "page",
+    ref: "Page",
   },
   children: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "page",
+      ref: "Page",
     },
   ],
   pageElement: [],
@@ -33,4 +33,6 @@ function autoPopulate(next) {
 
 pageSchema.pre("find", autoPopulate).pre("findOne", autoPopulate);
 
-export default mongoose.models.Page || mongoose.model("page", pageSchema);
+const Page = mongoose.models.Page || mongoose.model("Page", pageSchema);
+
+export default Page;

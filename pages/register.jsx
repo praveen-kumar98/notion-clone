@@ -40,7 +40,7 @@ const Register = () => {
       <div className="main">
         <div className="container">
           <div className="form-container">
-            <div className="title">Log In</div>
+            <div className="title">Sign Up</div>
             <form onSubmit={handleSubmit} className="form">
               <label>Email</label>
               <input
