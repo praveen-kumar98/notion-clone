@@ -1,4 +1,5 @@
 export const ACTIONS = {
   NOTIFY: "NOTIFY",
   GET_PAGES: "GET_PAGES",
+  EDIT_PAGE_NAME: "EDIT_PAGE_NAME",
 };

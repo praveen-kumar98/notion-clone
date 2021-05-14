@@ -1,4 +1,5 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useState, createRef, useEffect, useContext } from "react";
+import { DataContext } from "../../store/GlobalState";
 
 const Dropdown = ({
   setOptionOpacity,
@@ -6,14 +7,16 @@ const Dropdown = ({
   addPage,
   depth,
   pageId,
+  renamePage,
 }) => {
   const [dropdownVisibale, setDropdownVisible] = useState(false);
   const [renameDropdn, setRenameDropdn] = useState(false);
   const [confirmModalvisible, setConfirmModalvisible] = useState(false);
-
   const dpdnRef = createRef();
   const renameRef = createRef();
   const modalRef = createRef();
+
+  const [_, dispatch] = useContext(DataContext);
 
   const shouldBlur = (e) => {
     if (e.keyCode === 13) {
@@ -22,6 +25,24 @@ const Dropdown = ({
       setDropDownOpen(false);
     }
   };
+
+  async function editOnChange(pageId, pageName) {
+    if (pageName === "" || pageName === null) {
+      pageName = "Untitled";
+    }
+    const res = await fetch(`/api/pages/${pageId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: pageName }),
+    });
+    const data = await res.json();
+    dispatch({
+      type: "EDIT_PAGE_NAME",
+      payload: { name: data.name, _id: data._id },
+    });
+  }
 
   useEffect(() => {
     const dpdnHandler = (e) => {
@@ -66,6 +87,7 @@ const Dropdown = ({
     setOptionOpacity,
     setDropDownOpen,
   ]);
+
   return (
     <div className="dropdown">
       {/* Dropdown parent */}
@@ -117,6 +139,10 @@ const Dropdown = ({
               type="text"
               className="page-name"
               onKeyDown={shouldBlur}
+              onChange={(e) => {
+                renamePage(pageId, e.target.value);
+                editOnChange(pageId, e.target.value);
+              }}
             />
           </div>
         </div>

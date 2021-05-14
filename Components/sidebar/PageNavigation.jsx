@@ -8,6 +8,7 @@ const PageNavigation = ({
   openFolder,
   depth,
   addPage,
+  renamePage
 }) => {
   const [optionOpacity, setOptionOpacity] = useState(0);
   const [dropDownOpen, setDropDownOpen] = useState(false);
@@ -39,6 +40,7 @@ const PageNavigation = ({
           addPage={addPage}
           depth={depth}
           pageId={pageId}
+          renamePage={renamePage}
         />
       </div>
     </div>

@@ -1,5 +1,5 @@
-import dbConnect from "../../utils/dbConnect";
-import Page from "../../model/Page";
+import dbConnect from "../../../utils/dbConnect";
+import Page from "../../../model/Page";
 
 export default async function handler(req, res) {
   const { method } = req;

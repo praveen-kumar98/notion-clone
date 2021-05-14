@@ -23,7 +23,7 @@ const Sidebar = ({ pages }) => {
       }
     });
   }, []);
-
+  // Turn pages such that they can be displayed properly (depth, parent, children)
   function getPages(pages) {
     pages.map((page) => {
       if (page.parent === null) {
@@ -43,7 +43,7 @@ const Sidebar = ({ pages }) => {
       }
     });
   }
-
+  
   const openFolder = (id) => {
     let index = pageList.findIndex((x) => x._id === id);
 
@@ -114,9 +114,24 @@ const Sidebar = ({ pages }) => {
     setPageList(_pageList);
   };
 
+  //Component state changes as input chagnes
+  const renamePage = async (pageId, pageName) => {
+    if (pageName === "" || pageName === null) {
+      pageName = "Untitled";
+    }
+    const index = pageList.findIndex((x) => x._id === pageId);
+
+    let _pageList = [...pageList];
+
+    _pageList[index]["name"] = pageName;
+
+    setPageList(_pageList);
+  };
+
   useEffect(() => {
     getPages(pages);
-  }, [pages]);
+  }, [pages.length]);
+
   return (
     <div>
       {/* Sidebar Header */}
@@ -162,6 +177,7 @@ const Sidebar = ({ pages }) => {
                   openFolder={openFolder}
                   depth={page.depth}
                   addPage={addPage}
+                  renamePage={renamePage}
                 />
               </div>
             );

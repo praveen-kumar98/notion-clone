@@ -13,6 +13,13 @@ const reducers = (state, action) => {
         ...state,
         pages: payload,
       };
+    case ACTIONS.EDIT_PAGE_NAME:
+      return {
+        ...state,
+        pages: state.pages.map((page) =>
+          page._id === payload._id ? { ...page, name: payload.name } : page
+        ),
+      };
     default:
       return state;
   }
