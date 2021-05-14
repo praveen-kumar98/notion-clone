@@ -41,6 +41,7 @@ const PageNavigation = ({
           depth={depth}
           pageId={pageId}
           renamePage={renamePage}
+
         />
       </div>
     </div>

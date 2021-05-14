@@ -23,7 +23,6 @@ const Sidebar = ({ pages }) => {
       }
     });
   }, []);
-  // Turn pages such that they can be displayed properly (depth, parent, children)
   function getPages(pages) {
     pages.map((page) => {
       if (page.parent === null) {
@@ -43,7 +42,7 @@ const Sidebar = ({ pages }) => {
       }
     });
   }
-  
+
   const openFolder = (id) => {
     let index = pageList.findIndex((x) => x._id === id);
 
@@ -66,6 +65,7 @@ const Sidebar = ({ pages }) => {
       _pageList[index]["closed"] = true;
 
       setPageList(_pageList);
+
       if (page["children"]?.length > 0) {
         recursionClose(page["children"]);
       }

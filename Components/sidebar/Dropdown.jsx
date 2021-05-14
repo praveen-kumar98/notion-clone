@@ -1,6 +1,7 @@
 import React, { useState, createRef, useEffect, useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
 
+
 const Dropdown = ({
   setOptionOpacity,
   setDropDownOpen,
@@ -17,7 +18,6 @@ const Dropdown = ({
   const modalRef = createRef();
 
   const [_, dispatch] = useContext(DataContext);
-
   const shouldBlur = (e) => {
     if (e.keyCode === 13) {
       setRenameDropdn(false);
@@ -43,7 +43,7 @@ const Dropdown = ({
       payload: { name: data.name, _id: data._id },
     });
   }
-
+  
   useEffect(() => {
     const dpdnHandler = (e) => {
       if (!dpdnRef.current) {
@@ -87,7 +87,6 @@ const Dropdown = ({
     setOptionOpacity,
     setDropDownOpen,
   ]);
-
   return (
     <div className="dropdown">
       {/* Dropdown parent */}
@@ -143,6 +142,7 @@ const Dropdown = ({
                 renamePage(pageId, e.target.value);
                 editOnChange(pageId, e.target.value);
               }}
+
             />
           </div>
         </div>
