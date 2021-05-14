@@ -8,7 +8,7 @@ const Notify = () => {
   const { notify } = state;
   return (
     <>
-        {notify.loading && <Loader />}
+        {notify?.loading && <Loader />}
         {/* notification for error and success too */}
     </>
   );
